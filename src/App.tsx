@@ -1,6 +1,7 @@
 import React from 'react';
 import UserTable from './tables/UserTable';
 import IUsers from './models/IUsers';
+import 'normalize.css';
 import './App.css';
 
 function App() {
