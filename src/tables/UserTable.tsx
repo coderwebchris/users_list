@@ -24,7 +24,6 @@ const UserTable = (props: IProps) => (
             <td>
               <button
                 onClick={() => {
-                  console.log('edit: ',user.name);
                   props.editRow(user);
                 }}
                 className="button muted-button"

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import UserTable from './tables/UserTable';
-import AddUserForm from './forms/AddUserForm'
+import AddUserForm from './forms/AddUserForm';
+import EditUserForm from './forms/EditUserForm';
 import IUsers from './models/IUsers';
 import { userType, updateUserType } from './models/types';
 import 'normalize.css';
@@ -37,11 +38,6 @@ function App() {
 		setCurrentUser({ id: user.id, name: user.name, username: user.username })
 	}
 
-	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = event.target;
-		setCurrentUser({ ...currentUser, [name]: value });
-	};
-	
 	return (
 		<div className="container">
 			<h1>List of users</h1>
@@ -52,29 +48,21 @@ function App() {
 				</div>
 			</div>
 			<div className="add">
-				{editing ? (<div>
-					<h2>Edit user</h2>
-					<form
-						onSubmit={event => {
-							event.preventDefault();
-							updateUser(currentUser.id, currentUser);
-						}}
-					>
-						<label>Name</label>
-						<input type="text" name="name" value={currentUser.name} onChange={handleInputChange} />
-						<label>Username</label>
-						<input type="text" name="username" value={currentUser.username} onChange={handleInputChange} />
-						<button>Update user</button>
-						<button onClick={() => setEditing(false)} className="button muted-button">
-							Cancel
-							</button>
-					</form>
-				</div>
+				{editing ? (
+					<Fragment>
+						<h2>Edit user</h2>
+						<EditUserForm
+							editing={editing}
+							setEditing={setEditing}
+							currentUser={currentUser}
+							updateUser={updateUser}
+						/>
+					</Fragment>
 				) : (
-						<div>
+						<Fragment>
 							<h2>Add user</h2>
 							<AddUserForm addProps={{ addUser }} />
-						</div>
+						</Fragment>
 					)}
 			</div>
 		</div>

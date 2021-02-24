@@ -1,4 +1,3 @@
-import IUsers from './IUsers';
 import { userType } from './types';
 
 interface IProps {
