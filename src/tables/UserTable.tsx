@@ -3,14 +3,16 @@ import IUsers from '../models/IUsers';
 
 interface IProps {
   users: Array<IUsers>;
+  editRow: any;
 }
 
-const UserTable = (props:IProps) => (
+const UserTable = (props: IProps) => (
   <table>
     <thead>
       <tr>
         <th>Name</th>
         <th>Username</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -19,13 +21,24 @@ const UserTable = (props:IProps) => (
           <tr key={user.id}>
             <td>{user.name}</td>
             <td>{user.username}</td>
+            <td>
+              <button
+                onClick={() => {
+                  console.log('edit: ',user.name);
+                  props.editRow(user);
+                }}
+                className="button muted-button"
+              >
+                Edit
+              </button>
+            </td>
           </tr>
         ))
       ) : (
-        <tr>
-          <td colSpan={3}>No users</td>
-        </tr>
-      )}
+          <tr>
+            <td colSpan={3}>No users</td>
+          </tr>
+        )}
     </tbody>
   </table>
 );

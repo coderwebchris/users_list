@@ -1,4 +1,5 @@
 import IUsers from './IUsers';
 
-export type addUserType = (user: IUsers) => void;
+export type userType = (user: IUsers) => void;
+export type updateUserType = (id: number, updatedUser: IUsers) => void;
 
