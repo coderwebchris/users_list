@@ -3,6 +3,7 @@ import UserTable from './tables/UserTable';
 import AddUserForm from './forms/AddUserForm';
 import EditUserForm from './forms/EditUserForm';
 import IUsers from './models/IUsers';
+import { getNextId, getUpdated } from './functions/utils';
 import { userType, updateUserType } from './models/types';
 import 'normalize.css';
 import './App.css';
@@ -25,12 +26,13 @@ function App() {
 
 	// CRUD operations
 	const addUser: userType = (newUser: IUsers): void => {
-		newUser.id = users.length + 1;
+		newUser.id = getNextId(users);
 		setUsers([...users, newUser]);
 	};
 	const updateUser: updateUserType = (id: number, updatedUser: IUsers): void => {
-		setEditing(false)
-		setUsers(users.map(user => (user.id === id ? updatedUser : user)))
+		setEditing(false);
+		const updated: Array<IUsers> = getUpdated(users, id, updatedUser);
+		setUsers(updated);
 	};
 	const deleteUser = (id: number): void => {
 		setEditing(false)
