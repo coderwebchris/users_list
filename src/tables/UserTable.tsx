@@ -1,9 +1,11 @@
 import React from 'react';
 import IUsers from '../models/IUsers';
+import { userType } from '../models/types';
 
 interface IProps {
   users: Array<IUsers>;
-  editRow: any;
+  editRow: userType;
+  deleteUser: (id:number) => void;
 }
 
 const UserTable = (props: IProps) => (
@@ -29,6 +31,12 @@ const UserTable = (props: IProps) => (
                 className="button muted-button"
               >
                 Edit
+              </button>
+              <button
+                onClick={() => props.deleteUser(user.id)}
+                className="button muted-button"
+              >
+                Delete
               </button>
             </td>
           </tr>

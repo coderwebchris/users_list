@@ -23,7 +23,7 @@ function App() {
 	const [currentUser, setCurrentUser] = useState(initialFormState);
 	const [editing, setEditing] = useState(false);
 
-	// CRUD operation
+	// CRUD operations
 	const addUser: userType = (newUser: IUsers): void => {
 		newUser.id = users.length + 1;
 		setUsers([...users, newUser]);
@@ -32,6 +32,10 @@ function App() {
 		setEditing(false)
 		setUsers(users.map(user => (user.id === id ? updatedUser : user)))
 	};
+	const deleteUser = (id: number): void => {
+		setEditing(false)
+		setUsers(users.filter(user => user.id !== id))
+	}
 
 	const editRow: userType = (user: IUsers): void => {
 		setEditing(true);
@@ -44,7 +48,7 @@ function App() {
 			<div className="flex-row">
 				<div className="flex-large">
 					<h2>View users</h2>
-					<UserTable users={users} editRow={editRow} />
+					<UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
 				</div>
 			</div>
 			<div className="add">
