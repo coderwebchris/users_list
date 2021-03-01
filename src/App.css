@@ -1,17 +1,32 @@
+body {
+  color: #404E67;
+  background: #F5F7FA;
+  font-family: 'Open Sans', sans-serif;
+}
 .container {
   margin-left: auto;
   margin-right: auto;
   max-width: 80%;
   padding: 15px;
 }
+/* Table */
+.table-wrapper {
+  display:block;
+  width: 700px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
 table tr {
   text-align: center;
 }
-/* Table */
 table {
+  background: #ffffff;
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 700px;
+  overflow-x: auto;
 }
 
 td, th {
@@ -19,13 +34,19 @@ td, th {
   text-align: left;
   padding: 8px;
 }
-
-tr:nth-child(even) {
-  background-color: #eeeeee;
+th {
+  border-bottom: 2px solid #dddddd;
+}
+table th:last-child {
+  width: 200px;
+}
+table td {
+  vertical-align: center;
+  text-align: center;
 }
 
 .add {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 /* forms */
 label {
@@ -39,7 +60,6 @@ input[type="text"] {
   border-radius: 4px;
   padding: 0.75rem;
   margin-bottom: 0.5rem;
-  width: 100%;
 }
 button:hover {
   border: 1px solid #0250bc;
@@ -54,8 +74,10 @@ button {
   font-weight: 600;
   padding: 0.75rem 1.25rem;
   cursor: pointer;
-  margin-bottom: 0 !important;
   margin-right: .5rem;
+}
+form button {
+  margin-top: .5rem;
 }
 .muted-button, a.muted-button {
   background: #ffffff;

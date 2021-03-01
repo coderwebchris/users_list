@@ -13,9 +13,7 @@ function App() {
 	const usersData: Array<IUsers> = [
 		{ id: 1, name: 'Jane', username: 'Doe' },
 		{ id: 2, name: 'John', username: 'Smith' },
-		{ id: 3, name: 'Nomen', username: 'Nescio' },
-		{ id: 4, name: 'Max', username: 'Mustermann' },
-		{ id: 5, name: 'Mario', username: 'Rossi' },
+		{ id: 3, name: 'Nomen', username: 'Nescio' }
 	];
 	const initialFormState: IUsers = { id: 0, name: '', username: '' };
 
@@ -46,30 +44,27 @@ function App() {
 
 	return (
 		<div className="container">
-			<h1>List of users</h1>
-			<div className="flex-row">
-				<div className="flex-large">
-					<h2>View users</h2>
-					<UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
-				</div>
-			</div>
-			<div className="add">
-				{editing ? (
-					<Fragment>
-						<h2>Edit user</h2>
-						<EditUserForm
-							editing={editing}
-							setEditing={setEditing}
-							currentUser={currentUser}
-							updateUser={updateUser}
-						/>
-					</Fragment>
-				) : (
+			<div className="table-wrapper">
+				<h1>List of users</h1>
+				<UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
+				<div className="add">
+					{editing ? (
 						<Fragment>
-							<h2>Add user</h2>
-							<AddUserForm addProps={{ addUser }} />
+							<h2>Edit user</h2>
+							<EditUserForm
+								editing={editing}
+								setEditing={setEditing}
+								currentUser={currentUser}
+								updateUser={updateUser}
+							/>
 						</Fragment>
-					)}
+					) : (
+							<Fragment>
+								<h2>Add user</h2>
+								<AddUserForm addProps={{ addUser }} />
+							</Fragment>
+						)}
+				</div>
 			</div>
 		</div>
 	);
