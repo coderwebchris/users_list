@@ -2,7 +2,12 @@ import React, { useState } from 'react'
 import IEditUsersProps from '../models/IEditUsersProps';
 
 const EditUserForm: React.FC<IEditUsersProps> = (props: IEditUsersProps) => {
-  const [user, setUser] = useState(props.currentUser);
+  const {currentUser, users} = props.usersProps; 
+  const {setEditing, setUsers} = props.setStates; 
+  // local state
+  const [user, setUser] = useState(currentUser);
+
+  const {updateUser, getUpdated} = props;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -13,7 +18,8 @@ const EditUserForm: React.FC<IEditUsersProps> = (props: IEditUsersProps) => {
     <form
       onSubmit={event => {
         event.preventDefault();
-        props.updateUser(user.id, user);
+        updateUser(user.id, user, users, setUsers, getUpdated);
+        setEditing(false);
       }}
     >
       <label>Name</label>
@@ -21,11 +27,11 @@ const EditUserForm: React.FC<IEditUsersProps> = (props: IEditUsersProps) => {
       <label>Username</label>
       <input type="text" name="username" value={user.username} onChange={handleInputChange} />
       <button>Update user</button>
-      <button onClick={() => props.setEditing(false)} className="button muted-button">
+      <button onClick={() => setEditing(false)} className="button muted-button">
         Cancel
       </button>
     </form>
   )
-}
+};
 
 export default EditUserForm;

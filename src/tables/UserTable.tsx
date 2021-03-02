@@ -2,10 +2,16 @@ import React from 'react';
 import IUsers from '../models/IUsers';
 import { userType } from '../models/types';
 
+interface ISetStates {
+	setEditing: Function;
+	setUsers: Function;
+  setCurrentUser: Function;
+}
 interface IProps {
   users: Array<IUsers>;
   editRow: userType;
-  deleteUser: (id: number) => void;
+  deleteUser: (id: number, users: Array<IUsers>, setStates: ISetStates) => void;
+  setStates: ISetStates;
 }
 
 const UserTable = (props: IProps) => (
@@ -26,14 +32,14 @@ const UserTable = (props: IProps) => (
               <td>
                 <button
                   onClick={() => {
-                    props.editRow(user);
+                    props.editRow(user, props.setStates);
                   }}
                   className="button muted-button"
                 >
                   Edit
               </button>
                 <button
-                  onClick={() => props.deleteUser(user.id)}
+                  onClick={() => props.deleteUser(user.id, props.users, props.setStates)}
                   className="button muted-button"
                 >
                   Delete
