@@ -3,7 +3,7 @@ import UserTable from './tables/UserTable';
 import AddUserForm from './forms/AddUserForm';
 import EditUserForm from './forms/EditUserForm';
 import IUsers from './models/IUsers';
-import { getNextId, getUpdated } from './functions/utils';
+import { getNextId, getUpdated, addUser } from './functions/utils';
 import { userType, updateUserType } from './models/types';
 import 'normalize.css';
 import './App.css';
@@ -22,11 +22,9 @@ function App() {
 	const [currentUser, setCurrentUser] = useState(initialFormState);
 	const [editing, setEditing] = useState(false);
 
+	const nextId: number = getNextId(users);
+
 	// CRUD operations
-	const addUser: userType = (newUser: IUsers): void => {
-		newUser.id = getNextId(users);
-		setUsers([...users, newUser]);
-	};
 	const updateUser: updateUserType = (id: number, updatedUser: IUsers): void => {
 		setEditing(false);
 		const updated: Array<IUsers> = getUpdated(users, id, updatedUser);
@@ -61,7 +59,7 @@ function App() {
 					) : (
 							<Fragment>
 								<h2>Add user</h2>
-								<AddUserForm addProps={{ addUser }} />
+								<AddUserForm addProps={{ addUser, nextId, users, setUsers }} />
 							</Fragment>
 						)}
 				</div>

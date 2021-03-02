@@ -1,7 +1,11 @@
-import { userType } from './types';
+import IUsers from './IUsers';
+import { userTypeAdd } from './types';
 
 interface IProps {
-	addUser: userType;
+	addUser: userTypeAdd;
+	nextId: number;
+	users: Array<IUsers>;
+	setUsers: Function;
 }
 
 interface IUsersProps {

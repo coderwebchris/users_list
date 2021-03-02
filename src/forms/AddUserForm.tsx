@@ -5,7 +5,8 @@ import IUsersProps from '../models/IUsersProps';
 const AddUserForm: React.FC<IUsersProps> = (props: IUsersProps) => {
 	const initialFormState: IUsers = { id: 0, name: '', username: '' };
 	const [user, setUser] = useState(initialFormState); // set new user
-
+	const {addUser, nextId, users, setUsers} = props.addProps;
+	
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
 		setUser({ ...user, [name]: value });
@@ -17,8 +18,8 @@ const AddUserForm: React.FC<IUsersProps> = (props: IUsersProps) => {
 				event.preventDefault();
 				if (!user.name || !user.username) return;
 
-				props.addProps.addUser(user);
-				setUser(initialFormState); // // reinitialize form field
+				addUser(user, nextId, users, setUsers);
+				setUser(initialFormState); // reinitialize form field
 			}}
 		>
 			<label>Name</label>
