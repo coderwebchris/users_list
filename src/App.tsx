@@ -6,6 +6,7 @@ import IUsers from './models/IUsers';
 import { getNextId, editRow, getUpdated, addUser, updateUser, deleteUser } from './functions/utils';
 import 'normalize.css';
 import './App.css';
+import GitHubIcon from './svgicon';
 
 function App() {
 	// Initial list of users
@@ -26,12 +27,15 @@ function App() {
 	return (
 		<div className="container">
 			<div className="table-wrapper">
-				<h1>List of users</h1>
+				<div className="flex-wrapper">
+					<h1>List of users</h1>
+					<GitHubIcon />
+				</div>
 				<UserTable
 					users={users}
 					editRow={editRow}
 					deleteUser={deleteUser}
-					setStates={{setEditing, setUsers, setCurrentUser}}
+					setStates={{ setEditing, setUsers, setCurrentUser }}
 				/>
 				<div className="add">
 					{editing ? (

@@ -84,3 +84,20 @@ form button {
   border: 1px solid #cdcdcd;
   color: #4e4e4e;
 }
+/* title */
+.flex-wrapper {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+.flex-wrapper h1, div {
+  width: 100%;
+}
+.flex-wrapper div {
+  text-align: right;
+}
+
+.icon-github {
+  width: 30px;
+  height:30px;
+}

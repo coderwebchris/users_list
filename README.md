@@ -1,3 +1,5 @@
+Example of a List of users, build with React, Hooks and TypeScript.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
